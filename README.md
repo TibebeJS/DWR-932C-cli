@@ -1,3 +1,5 @@
+
+[![Build Status](https://travis-ci.com/TibebeJS/DWR-932C-cli.svg?token=vYrjxmi3DjwQPM27LRsW&branch=master)](https://travis-ci.com/TibebeJS/DWR-932C-cli)
 # D-Link DWR-932C (LTE Router) Unofficial CLI tool
 
 >Note: Created for personal purposes

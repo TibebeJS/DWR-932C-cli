@@ -12,5 +12,8 @@
 *.out
 .env
 
+# build artifacts
+build/
+
 # Dependency directories (remove the comment below to include it)
 # vendor/

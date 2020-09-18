@@ -34,7 +34,7 @@ func main() {
 			{
 				Name:    "change-mode",
 				Aliases: []string{"m"},
-				Usage:   "change connection mode to.",
+				Usage:   "change connection mode to a desired mode.",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:        "to",

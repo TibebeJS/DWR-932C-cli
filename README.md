@@ -33,7 +33,7 @@ GLOBAL OPTIONS:
 
     ```
     NAME:
-        change-mode - change connection mode to.
+        change-mode - change connection mode to a desired mode.
 
     USAGE:
         change-mode [command options] [arguments...]

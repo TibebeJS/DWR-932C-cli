@@ -5,8 +5,24 @@ import (
 	"log"
 	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/urfave/cli"
 )
+
+// init is invoked before main()
+func init() {
+	// loads values from .env into the system
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("No .env file found")
+	}
+
+	for _, envKey := range []string{"DWR_URL", "DWR_USERNAME", "DWR_PASSWORD"} {
+		if _, ok := os.LookupEnv(envKey); !ok {
+			log.Fatal("'" + envKey + "' key must be set")
+		}
+	}
+
+}
 
 func main() {
 	var mode string

@@ -68,7 +68,7 @@ func ChangeMode(desiredMode string) {
 
 		chromedp.SendKeys(
 			"#tf1_usrName",
-			os.Getenv("DWR_USER"),
+			os.Getenv("DWR_USERNAME"),
 		),
 		chromedp.SendKeys(
 			"#tf1_password",

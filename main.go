@@ -28,16 +28,15 @@ func main() {
 					},
 				},
 				Action: func(c *cli.Context) error {
-					fmt.Println("[+] running CLI tool...")
-					if mode == "auto" {
-						fmt.Println("[+] changing connection mode to 'Auto'.")
-					} else if mode == "LTE" {
-						fmt.Println("[+] changing connection mode to 'LTE'.")
-					} else if mode == "3G" {
-						fmt.Println("[+] changing connection mode to '3G'.")
-					} else if mode == "2G" {
-						fmt.Println("[+] changing connection mode to '2G'.")
+					desiredMode, ok := ConnectionModes[mode]
+
+					if !ok {
+						log.Fatalln("[-] Not a valid connection mode - only 'auto', 'LTE', '3G' or '2G' are allowed")
 					}
+
+					fmt.Println("[+] running CLI tool...")
+					fmt.Println("[+] changing connection mode to '" + mode + "' Mode.")
+					ChangeMode(desiredMode)
 					return nil
 				},
 			},

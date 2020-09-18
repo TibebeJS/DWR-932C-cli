@@ -1,8 +1,7 @@
 language: go
 
 go:
-- 1.15.x
-- master
+- tip
 
 script:
     - GOOS=windows go build -o build/DWR-932C-cli.exe .   

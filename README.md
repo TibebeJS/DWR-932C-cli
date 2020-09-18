@@ -1,7 +1,16 @@
 # D-Link DWR-932C (LTE Router) Unofficial CLI tool
 
-Created for personal purposes
+>Note: Created for personal purposes
 
+## Setup
+create a `.env` file with the following keys set. (You can copy & paste the content of `sample.env` and make any necessary changes)
+```
+DWR_URL="http://192.168.0.1"
+DWR_USERNAME="admin"
+DWR_PASSWORD="admin"
+```
+
+## Available commands
 main command: `DWR-932C-cli`
 
 ```
@@ -19,8 +28,7 @@ GLOBAL OPTIONS:
    --help, -h  show help
 
 ```
-
-Available subcommands:
+### subcommands:
  - `DWR-932C-cli change-mode`
 
     ```

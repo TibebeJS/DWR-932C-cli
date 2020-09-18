@@ -1,21 +1,24 @@
 language: go
 
 go:
-- 1.15.x
-- master
+- tip
 
 script:
     - GOOS=windows go build -o build/DWR-932C-cli.exe .   
     - GOOS=linux GOARCH=arm go build -o build/DWR-932C-cli-arm .       
     - GOOS=linux GOARCH=arm64 go build -o build/DWR-932C-cli-arm64 .
     - GOOS=linux GOARCH=amd64 go build -o build/DWR-932C-cli-amd64 .
-
 deploy:
   provider: releases
   api_key:
     secure: VjxD/Eb/W/ASwb6eR+BCurMlpyJkgrtH9/5Bt6p2V4jlULqG+bx5GCqA8AeoI91i+w9bL+QU5yfvBXuSBgcGb4+SApXxDXguhorn+VTiFAr3Jfx8bqNrTnAb4tjEIpAUXo+XphTDZ2fcYa1ftFcue7Z+CDhKvW9O2xUsYqFVnGY33dQQx8vN00DiQD+P5YH0YsG7faoKJO9FrDewdrG007s5GbwYVAIJJvHS9m6sNVHQTd3/WERlmNplQ6KcLB4/L2RnWjztYUYiCk1V+evj/TPwGIfQ+nWjz0sirJGuakKfCJUr0WhSp1QdnLCkMTh/Zhln/Ta6xPV625OiorI4xrbo4QU1Q0wvO0gtaMKsc3NAkW1ODrogjA81MMNzQzmbpNCt8DlrqEabSOZ8s949Issu31SuWhnW45m1bYDESf8k6MVOo7rD9XOQwfqxw/0ogzdi7oCdJgHtYmrfCuuu+rm5KXOzOj7hpmtIxhG8zTX2uYtw4HmuWepQgPwOr/FnqPak+eUfv/lEH8BMUhQBZNd5h1zg74wIXR/9pRZOs7LIFTcy/O/Gy3aVxTBh/hclvswxDGvhe9NGa1KNTegEmKh622V/33nH+9Tcvk8hb7R0Lv7UwRQgx3z9+Ip4zvfTGUSsMG4lcmT3dmkgEFG85fSLjoUDOrl+wnJhl3cX3gI=
-  file: build/*
+  file:
+    - build/DWR-932C-cli.exe
+    - build/DWR-932C-cli-arm
+    - build/DWR-932C-cli-arm64
+    - build/DWR-932C-cli-amd64
   on:
     repo: TibebeJS/DWR-932C-cli
-    branch: master
-  skip_cleanup: 'true'
+    # branch: master
+    tag: true
+  skip_cleanup: true

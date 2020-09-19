@@ -18,7 +18,7 @@ func init() {
 
 	for _, envKey := range []string{"DWR_URL", "DWR_USERNAME", "DWR_PASSWORD"} {
 		if _, ok := os.LookupEnv(envKey); !ok {
-			log.Fatal("'" + envKey + "' key must be set")
+			log.Fatalf("'%s' key must be set", envKey)
 		}
 	}
 
@@ -51,7 +51,7 @@ func main() {
 					}
 
 					fmt.Println("[+] running CLI tool...")
-					fmt.Println("[+] changing connection mode to '" + mode + "' Mode.")
+					fmt.Printf("[+] changing connection mode to '%s' Mode.\n", mode)
 					ChangeMode(desiredMode)
 					return nil
 				},

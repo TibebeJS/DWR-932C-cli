@@ -18,7 +18,7 @@ func init() {
 
 	for _, envKey := range []string{"DWR_URL", "DWR_USERNAME", "DWR_PASSWORD"} {
 		if _, ok := os.LookupEnv(envKey); !ok {
-			log.Fatal("'" + envKey + "' key must be set")
+			log.Fatalf("'%s' key must be set", envKey)
 		}
 	}
 
@@ -26,6 +26,10 @@ func init() {
 
 func main() {
 	var mode string
+	var turnWIFIOn bool
+	var turnWIFIOff bool
+
+	fmt.Println("[+] running CLI tool...")
 
 	app := &cli.App{
 		Name:  "DWR-932C CLI tool",
@@ -50,9 +54,40 @@ func main() {
 						log.Fatalln("[-] Not a valid connection mode - only 'auto', 'LTE', '3G' or '2G' are allowed")
 					}
 
-					fmt.Println("[+] running CLI tool...")
-					fmt.Println("[+] changing connection mode to '" + mode + "' Mode.")
+					fmt.Printf("[+] changing connection mode to '%s' Mode.\n", mode)
 					ChangeMode(desiredMode)
+					return nil
+				},
+			},
+			{
+				Name:    "wifi",
+				Aliases: []string{"w"},
+				Usage:   "manage WIFI related settings",
+				Flags: []cli.Flag{
+					&cli.BoolFlag{
+						Name:        "on",
+						Usage:       "Turn WIFI on",
+						Destination: &turnWIFIOn,
+					},
+					&cli.BoolFlag{
+						Name:        "off",
+						Usage:       "Turn WIFI off",
+						Destination: &turnWIFIOff,
+					},
+				},
+				Action: func(c *cli.Context) error {
+					if turnWIFIOn && turnWIFIOff {
+						log.Fatal("--on and --off flags are mutually exclusive. please choose one")
+					}
+
+					if turnWIFIOn {
+						fmt.Println("[+] turing WiFi on...")
+						DisableWiFi(!turnWIFIOn)
+					} else if turnWIFIOff {
+						fmt.Println("[+] turing WiFi off...")
+						DisableWiFi(turnWIFIOff)
+					}
+
 					return nil
 				},
 			},

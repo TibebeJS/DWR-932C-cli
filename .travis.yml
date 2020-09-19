@@ -19,6 +19,6 @@ deploy:
     - build/DWR-932C-cli-amd64
   on:
     repo: TibebeJS/DWR-932C-cli
-    # branch: master
+    branch: master
     tag: true
   skip_cleanup: true

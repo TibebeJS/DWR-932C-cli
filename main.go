@@ -82,8 +82,10 @@ func main() {
 
 					if turnWIFIOn {
 						fmt.Println("[+] turing WiFi on...")
+						DisableWiFi(!turnWIFIOn)
 					} else if turnWIFIOff {
 						fmt.Println("[+] turing WiFi off...")
+						DisableWiFi(turnWIFIOff)
 					}
 
 					return nil

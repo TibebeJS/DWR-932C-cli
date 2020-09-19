@@ -31,7 +31,7 @@ GLOBAL OPTIONS:
 
 ```
 ### subcommands:
- - `DWR-932C-cli change-mode`
+ - `DWR-932C-cli change-mode` - change connection mode between the available modes.
 
     ```
     NAME:
@@ -44,4 +44,17 @@ GLOBAL OPTIONS:
     --to value  desired connection mode ('auto', 'LTE', '3G' or '2G'). (default: "auto")
     ```
 
+ - `DWR-932C-cli wifi` - control wifi related settings
+
+    ```
+    NAME:
+        wifi - manage WIFI related settings
+
+    USAGE:
+        wifi [command options] [arguments...]
+
+    OPTIONS:
+    --on   Turn WIFI on
+    --off  Turn WIFI off
+    ```
 Built in GO!

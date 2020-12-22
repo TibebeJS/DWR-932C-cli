@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"reflect"
 
 	"github.com/joho/godotenv"
+	"github.com/manifoldco/promptui"
 	"github.com/urfave/cli"
 )
 
@@ -18,7 +20,7 @@ func init() {
 
 	for _, envKey := range []string{"DWR_URL", "DWR_USERNAME", "DWR_PASSWORD"} {
 		if _, ok := os.LookupEnv(envKey); !ok {
-			log.Fatalf("'%s' key must be set", envKey)
+			log.Fatalf("'%s' key not found on the config file", envKey)
 		}
 	}
 
@@ -54,7 +56,31 @@ func main() {
 						log.Fatalln("[-] Not a valid connection mode - only 'auto', 'LTE', '3G' or '2G' are allowed")
 					}
 
-					fmt.Printf("[+] changing connection mode to '%s' Mode.\n", mode)
+					fmt.Printf("[*] changing connection mode to '%s' Mode.\n", mode)
+					ChangeMode(desiredMode)
+					return nil
+				},
+			},
+			{
+				Name:    "mode prompt",
+				Aliases: []string{"p"},
+				Usage:   "change connection mode to a desired mode (prompt)",
+				Flags:   []cli.Flag{},
+				Action: func(c *cli.Context) error {
+					prompt1 := promptui.Select{
+						Label: "Select Mode",
+						Items: reflect.ValueOf(ConnectionModes).MapKeys(),
+					}
+
+					_, result, er := prompt1.Run()
+
+					if er != nil {
+						fmt.Printf("Mode prompt failed %v\n", er)
+					}
+
+					desiredMode, _ := ConnectionModes[result]
+
+					fmt.Printf("[*] changing connection mode to '%s' Mode.\n", result)
 					ChangeMode(desiredMode)
 					return nil
 				},

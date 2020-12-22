@@ -56,7 +56,7 @@ func ChangeMode(desiredMode string) {
 							fmt.Println(err)
 						}
 
-						fmt.Printf(ev.(*page.EventJavascriptDialogOpening).Message) // holds msg!
+						fmt.Printf("[+] %s\n", ev.(*page.EventJavascriptDialogOpening).Message) // holds msg!
 
 					}()
 				}
@@ -84,7 +84,8 @@ func ChangeMode(desiredMode string) {
 	)
 
 	if err != nil {
-		log.Fatal(err)
+		// log.Fatal(err)
 	}
-	log.Printf("[+] Done! completed the script")
+
+	fmt.Println("[+] Done! completed the script")
 }
